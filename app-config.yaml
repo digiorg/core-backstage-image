@@ -65,12 +65,8 @@ auth:
         clientId: ${AUTH_OIDC_CLIENT_ID}
         clientSecret: ${AUTH_OIDC_CLIENT_SECRET}
         prompt: auto
-        signIn:
-          resolvers:
-            # Allow any authenticated user (creates identity from OIDC claims)
-            - resolver: preferredUsernameMatchingUserEntityName
-            - resolver: emailMatchingUserEntityProfileEmail
-            - resolver: emailLocalPartMatchingUserEntityName
+        # Sign-in resolution handled by custom resolver in backend
+        # (see packages/backend/src/authModule.ts)
 
 scaffolder:
   defaultAuthor:
