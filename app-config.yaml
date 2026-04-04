@@ -33,10 +33,11 @@ backend:
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
 
-integrations:
-  github:
-    - host: github.com
-      token: ${GITHUB_TOKEN}
+# GitHub integration is optional - only enabled if GITHUB_TOKEN is set
+# integrations:
+#   github:
+#     - host: github.com
+#       token: ${GITHUB_TOKEN}
 
 techdocs:
   builder: 'local'
