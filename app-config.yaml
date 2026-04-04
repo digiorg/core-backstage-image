@@ -48,6 +48,9 @@ techdocs:
 
 auth:
   environment: production
+  # Session secret required for OIDC auth
+  session:
+    secret: ${AUTH_SESSION_SECRET}
   # Configure sign-in page providers
   signIn:
     guest:
