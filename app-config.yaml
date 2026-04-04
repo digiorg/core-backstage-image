@@ -48,6 +48,13 @@ techdocs:
 
 auth:
   environment: production
+  # Configure sign-in page providers
+  signIn:
+    guest:
+      enabled: true
+    oidc:
+      title: Keycloak SSO
+      message: Sign in with Keycloak
   providers:
     oidc:
       production:
