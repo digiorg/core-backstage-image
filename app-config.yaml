@@ -1,0 +1,90 @@
+app:
+  title: DigiOrg Developer Portal
+  baseUrl: ${APP_BASE_URL}
+
+  packages: all
+
+  extensions:
+    - page:catalog:
+        config:
+          path: /
+
+organization:
+  name: DigiOrg
+
+backend:
+  baseUrl: ${BACKEND_BASE_URL}
+  listen:
+    port: 7007
+  csp:
+    connect-src: ["'self'", 'http:', 'https:']
+  cors:
+    origin: ${APP_BASE_URL}
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+
+techdocs:
+  builder: 'local'
+  generator:
+    runIn: 'local'
+  publisher:
+    type: 'local'
+
+auth:
+  environment: production
+  providers:
+    oidc:
+      production:
+        metadataUrl: ${AUTH_OIDC_METADATA_URL}
+        clientId: ${AUTH_OIDC_CLIENT_ID}
+        clientSecret: ${AUTH_OIDC_CLIENT_SECRET}
+        prompt: auto
+        signIn:
+          resolvers:
+            - resolver: emailMatchingUserEntityProfileEmail
+            - resolver: emailLocalPartMatchingUserEntityName
+
+scaffolder:
+  defaultAuthor:
+    name: DigiOrg Scaffolder
+    email: scaffolder@digiorg.local
+
+catalog:
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location, Template, User, Group]
+  locations:
+    - type: file
+      target: ../../examples/entities.yaml
+    - type: file
+      target: ../../examples/template/template.yaml
+      rules:
+        - allow: [Template]
+    - type: file
+      target: ../../examples/org.yaml
+      rules:
+        - allow: [User, Group]
+
+kubernetes:
+  serviceLocatorMethod:
+    type: 'multiTenant'
+  clusterLocatorMethods:
+    - type: 'config'
+      clusters: []
+
+permission:
+  enabled: true
