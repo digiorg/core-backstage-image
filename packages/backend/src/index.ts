@@ -25,8 +25,10 @@ backend.add(import('@backstage/plugin-techdocs-backend'));
 
 // auth plugin
 backend.add(import('@backstage/plugin-auth-backend'));
-// OIDC provider for Keycloak SSO
-backend.add(import('@backstage/plugin-auth-backend-module-oidc-provider'));
+// Custom OIDC provider that creates user identity from OIDC claims
+// (doesn't require pre-existing User entities in catalog)
+import { customOidcAuthModule } from './authModule';
+backend.add(customOidcAuthModule);
 
 // catalog plugin
 backend.add(import('@backstage/plugin-catalog-backend'));
