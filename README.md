@@ -1,6 +1,6 @@
 # DigiOrg Core Backstage Image
 
-Custom Backstage Docker image for the DigiOrg Agentic DevSecOps Platform.
+Custom Backstage Docker image for the DigiOrg Core Platform.
 
 ## Features
 
@@ -26,7 +26,7 @@ ghcr.io/digiorg/core-backstage-image:latest
 | `POSTGRES_PORT` | PostgreSQL port | `5432` |
 | `POSTGRES_USER` | PostgreSQL user | `backstage` |
 | `POSTGRES_PASSWORD` | PostgreSQL password | (secret) |
-| `AUTH_OIDC_METADATA_URL` | Keycloak OIDC discovery URL | `http://digiorg.local/keycloak/realms/agentic-platform/.well-known/openid-configuration` |
+| `AUTH_OIDC_METADATA_URL` | Keycloak OIDC discovery URL | `http://digiorg.local/keycloak/realms/digiorg-core-platform/.well-known/openid-configuration` |
 | `AUTH_OIDC_CLIENT_ID` | Keycloak client ID | `backstage` |
 | `AUTH_OIDC_CLIENT_SECRET` | Keycloak client secret | (secret) |
 | `GITHUB_TOKEN` | GitHub PAT for integrations | (secret) |
@@ -81,4 +81,4 @@ The GitHub Actions workflow automatically builds and pushes the image on:
 
 ## Related Repositories
 
-- [agentic-devsecops-platform](https://github.com/digiorg/agentic-devsecops-platform) - Platform deployment manifests
+- [digiorg-core-platform](https://github.com/digiorg/core) - Platform deployment manifests
